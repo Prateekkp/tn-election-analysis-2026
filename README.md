@@ -1,154 +1,178 @@
-# Decoding the 2026 Tamil Nadu Assembly Election
+# Tamil Nadu Election Analysis 2026
 
-## A Data-Driven Analysis of Regional Redistribution, Constituency Flips, and Vote-Share Realignment
+## Data-Driven Dashboard and Election Briefing
 
+This project presents a data-driven analysis of the 2026 Tamil Nadu Assembly Election, with comparisons against the 2021 election to understand regional seat redistribution, constituency-level flips, and vote-share realignment.
 
-## Project overview
+**Live dashboard:** [https://tn-election-analysis-2026.vercel.app/](https://tn-election-analysis-2026.vercel.app/)
 
-This repository contains a detailed analysis of the **2026 Tamil Nadu Assembly Election**, comparing results with the **2021 election** to identify:
-
-- **Regional seat redistribution patterns**
-- **Constituency-level winning-party flips**
-- **Statewide and regional vote-share realignment**
-- **Emergence and geographic expansion of TVK**
-
-The analysis is written as a newsroom-style briefing focused on evidence-backed insights and clear visual storytelling.
+![Tamil Nadu Election Analysis 2026 dashboard landing page](assets/landing-page.png)
 
 ---
 
-## Problem statements
+## Project Overview
 
-The project addresses three core analytical questions:
+The dashboard and supporting analysis are designed as a newsroom-style election briefing. The project focuses on evidence-backed insights, clear visual storytelling, and constituency-level comparison between the 2021 and 2026 Tamil Nadu Assembly election results.
 
-### 1. The geographic story
+The analysis explores:
 
-How did seat distribution shift across Tamil Nadu’s six regions between 2021 and 2026? Where did major formations gain or lose ground?
-
-**Focus areas:** regional redistribution, strongest expansion/contraction zones, regional concentration patterns.
-
-**Key insight:** seat redistribution in 2026 was **regionally concentrated**, with **Chennai Metro**, **North**, and **South** showing the sharpest shifts.
-
-### 2. The flip story
-
-How many constituencies changed the winning party between 2021 and 2026, and what movement patterns emerged?
-
-**Focus areas:** constituency-level transfer flows, stable vs flipped seats, directional movement between formations.
-
-**Key insight:** **163 constituencies flipped**, with **TVK** emerging as the largest recipient of flipped seats.
-
-### 3. The vote-share story
-
-Where did TVK’s votes come from — DMK, AIADMK, both, or previously non-voting populations?
-
-**Focus areas:** statewide vote-share redistribution, regional overlap patterns, correlation between gains and contractions.
-
-**Key insight:** TVK’s rise coincided with vote-share contractions across multiple established formations, notably **DMK** and **AIADMK**.
+- Regional seat redistribution across Tamil Nadu
+- Constituency-level winning-party flips
+- Statewide and regional vote-share shifts
+- The emergence and geographic expansion of TVK
 
 ---
 
-## Dataset information
+## Analytical Questions
 
-The analysis uses three canonical CSV datasets:
+### 1. Regional Redistribution
+
+How did seat distribution change across Tamil Nadu's six editorial regions between 2021 and 2026?
+
+**Focus areas:** regional gains and losses, concentration of shifts, and party-wise expansion or contraction zones.
+
+**Key insight:** Seat redistribution in 2026 was regionally concentrated, with Chennai Metro, North, and South showing the sharpest changes.
+
+### 2. Constituency Flip Story
+
+How many constituencies changed winning party between 2021 and 2026, and what transfer patterns emerged?
+
+**Focus areas:** flipped seats, stable seats, transfer flows, and directional movement between formations.
+
+**Key insight:** 163 constituencies flipped, with TVK emerging as the largest recipient of flipped seats.
+
+### 3. Vote-Share Realignment
+
+Where did TVK's vote share gains overlap with contractions among established parties?
+
+**Focus areas:** statewide vote-share redistribution, regional overlap patterns, and correlation between gains and losses.
+
+**Key insight:** TVK's rise coincided with vote-share contractions across multiple established formations, notably DMK and AIADMK.
+
+---
+
+## Dataset Information
+
+The analysis uses three canonical CSV datasets stored in `public/data/` for deployment readiness.
 
 | File | Description |
 | --- | --- |
-| **tn_2021_results.csv** | Tamil Nadu Assembly Election results — 2021 |
-| **tn_2026_results.csv** | Tamil Nadu Assembly Election results — 2026 |
-| **constituency_master.csv** | Constituency-to-region mapping |
-
-Files are located in `public/data/` for deployment-readiness.
+| `tn_2021_results.csv` | Tamil Nadu Assembly Election results for 2021 |
+| `tn_2026_results.csv` | Tamil Nadu Assembly Election results for 2026 |
+| `constituency_master.csv` | Constituency-to-region mapping |
 
 ---
 
-## Key data-modeling decisions
+## Data Modeling Decisions
 
-- **Primary key:** `ac_number` (used for merging and per-constituency comparisons).
-- **Regional grouping:** six editorial regions — Chennai Metro, North, Central, Kongu, Delta, South.
-- **Party aggregation:** minor formations are grouped as **Others**; major formations kept separate (`TVK`, `DMK`, `AIADMK`).
-
----
-
-## Data preparation workflow
-
-1. **Data audit** — shape checks, missing-value inspection, column validation.
-2. **Winner extraction** — convert candidate-level data into one row per constituency with winners for 2021 and 2026.
-3. **Regional mapping** — merge winners with `constituency_master.csv`.
-4. **Vote-share standardization** — compute statewide and regional vote shares and swings.
+- **Primary key:** `ac_number`, used to merge and compare constituencies across election years.
+- **Regional grouping:** six editorial regions: Chennai Metro, North, Central, Kongu, Delta, and South.
+- **Party aggregation:** major formations are kept separate, while smaller formations are grouped under `Others`.
 
 ---
 
-## Analytical approach and visuals
+## Data Preparation Workflow
 
-### Question 1 — Regional redistribution
-
-**Visuals:** regional gain/loss heatmap, biggest regional shift bar chart.
-
-**Metrics:** net seat change, regional concentration, sharpest expansion/contraction.
-
-**Findings:** · **Chennai Metro** recorded the sharpest redistribution · **TVK** gained seats across all six regions · **AIADMK** losses concentrated in **Kongu** and **South**.
-
-### Question 2 — Constituency flip story
-
-**Visuals:** Sankey diagram, top transfer-flow chart.
-
-**Metrics:** flipped constituencies, stable constituencies, largest directional transfer.
-
-**Findings:** **163 constituencies flipped**; **71** remained with the same formation; largest transfer flow: **DMK → TVK**.
-
-### Question 3 — Vote-share redistribution
-
-**Visuals:** statewide vote-share comparison, regional vote-share swing heatmap.
-
-**Metrics:** vote-share gain/loss, regional overlap patterns.
-
-**Findings:** **TVK** recorded the largest statewide vote-share gain; **DMK** experienced the sharpest statewide decline; **AIADMK** showed meaningful regional contractions.
+1. **Data audit:** validate dataset shape, missing values, and expected columns.
+2. **Winner extraction:** convert candidate-level records into one winner row per constituency.
+3. **Regional mapping:** merge constituency winners with `constituency_master.csv`.
+4. **Vote-share standardization:** compute statewide and regional vote shares and swings.
+5. **Dashboard preparation:** structure outputs for interactive charts and deployment.
 
 ---
 
-## Key insights (executive summary)
+## Visual Analysis
 
-- **Redistribution was regionally concentrated** rather than evenly distributed across the state.
-- **Constituency transfers were directional; TVK was the primary beneficiary.**
-- **Vote-share realignment was multi-source; TVK’s gains correspond with contractions across multiple formations.**
+## Analysis Preview
 
----
+The dashboard includes three main analytical sections with extended visual outputs:
 
-## Data limitations
-
-This analysis uses constituency-level results and aggregated vote shares. It does **not** include booth-level data, voter surveys, demographic segmentation, or turnout-behavior analysis. Therefore:
-
-- Vote-share overlap should not be interpreted as direct voter migration.
-- Correlation is not causation; behavioral inferences are limited.
+| Section | Preview |
+| --- | --- |
+| Regional Redistribution | [View screenshot](assets/q1.png) |
+| Constituency Flip Story | [View screenshot](assets/q2.png) |
+| Vote-Share Realignment | [View screenshot](assets/q3.png) |
 
 ---
 
-## Tech stack
+### Regional Redistribution
+
+**Visuals:** regional gain/loss heatmap and biggest regional shift bar chart.
+
+**Metrics:** net seat change, regional concentration, and party-wise expansion or contraction.
+
+**Finding:** Chennai Metro recorded the sharpest redistribution, TVK gained seats across all six regions, and AIADMK losses were concentrated in Kongu and South.
+
+### Constituency Flips
+
+**Visuals:** Sankey diagram and top transfer-flow chart.
+
+**Metrics:** flipped constituencies, stable constituencies, and largest directional transfers.
+
+**Finding:** 163 constituencies flipped, 71 remained with the same formation, and the largest transfer flow was from DMK to TVK.
+
+### Vote-Share Redistribution
+
+**Visuals:** statewide vote-share comparison and regional vote-share swing heatmap.
+
+**Metrics:** vote-share gain/loss, regional swing, and overlap between party gains and contractions.
+
+**Finding:** TVK recorded the largest statewide vote-share gain, while DMK experienced the sharpest statewide decline.
+
+---
+
+## Executive Summary
+
+- Redistribution was regionally concentrated rather than evenly spread across the state.
+- Constituency transfers were directional, with TVK as the primary beneficiary.
+- Vote-share realignment was multi-source, with TVK's gains corresponding to contractions across multiple formations.
+- Regional analysis adds important context that statewide numbers alone cannot capture.
+
+---
+
+## Tech Stack
 
 | Category | Tools |
 | --- | --- |
-| Programming | Python |
-| Data analysis | Pandas, NumPy |
+| Frontend | HTML, CSS, JavaScript |
+| Data analysis | Python, Pandas, NumPy |
 | Visualization | Matplotlib, Seaborn, Plotly |
-| Presentation | PowerPoint |
 | Notebook environment | Jupyter Notebook |
+| Deployment | Vercel |
 
 ---
 
-## Project highlights
+## Project Highlights
 
+- Interactive live election dashboard
 - Regional analytical storytelling
-- Sankey-based constituency transfer analysis
+- Constituency-level transfer analysis using Sankey flows
 - Vote-share overlap interpretation
-- Executive-style presentation design
+- Deployment-ready public data structure
+
+---
+
+## Data Limitations
+
+This analysis uses constituency-level results and aggregated vote shares. It does not include booth-level data, voter surveys, demographic segmentation, or turnout-behavior analysis.
+
+As a result:
+
+- Vote-share overlap should not be interpreted as direct voter migration.
+- Correlation should not be treated as causation.
+- Behavioral inferences are limited without survey or booth-level evidence.
 
 ---
 
 ## Author
 
-**Prateek Kumar Prasad** — B.Tech CSE (Data Science), K.R. Mangalam University
+**Prateek Kumar Prasad**  
+B.Tech CSE (Data Science), K.R. Mangalam University
 
 **Submission date:** 20 May 2026
 
 ---
 
-**Final editorial summary:** The 2026 Tamil Nadu election reflected concentrated regional redistribution, directional constituency transfers, and broad vote-share realignment across major formations.
+## Final Editorial Summary
+
+The 2026 Tamil Nadu Assembly Election reflected concentrated regional redistribution, directional constituency transfers, and broad vote-share realignment across major political formations.
