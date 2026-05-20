@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tamil Nadu Winning Party Flips Dashboard — Q2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/q2.css" />
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js" defer></script>
+  <script src="https://cdn.plot.ly/plotly-2.32.0.min.js" defer></script>
+  <script src="js/q2.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <main class="shell">
+    <section class="hero card">
+      <div class="hero-copy">
+        <p class="eyebrow">Tamil Nadu election analysis</p>
+        <h1>Winning party flips across 2021 and 2026</h1>
+        <p class="hero-text">
+          A white-background board dashboard showing where constituencies changed hands,
+          which parties lost or gained the most, and how the transfer pattern evolved.
+        </p>
+        <div class="hero-actions">
+          <span class="pill pill-accent">Sankey transfer view</span>
+          <span class="pill">Flip counts</span>
+          <span class="pill">Stable bloc analysis</span>
+        </div>
+      </div>
+
+      <aside class="hero-side">
+        <div class="status card-soft" id="loadStatus">Loading election data from the CSV files...</div>
+        <div class="insight-strip" id="insightStrip"></div>
+      </aside>
+    </section>
+
+    <section class="metrics-grid" id="metricsGrid"></section>
+
+    <section class="section card">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Constituency movement</p>
+          <h2>Sankey diagram of winning-party transfers</h2>
+        </div>
+        <p class="section-note">
+          Shows how 2021 winners map to 2026 winners, with minor parties grouped into Others.
+        </p>
+      </div>
+      <div class="chart-frame sankey-frame">
+        <div id="sankeyChart"></div>
+      </div>
+    </section>
+
+    <section class="two-col">
+      <section class="section card">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Top transfers</p>
+            <h2>Largest movement flows</h2>
+          </div>
+          <p class="section-note">
+            The bar chart ranks the most common winner-to-winner changes across constituencies.
+          </p>
+        </div>
+        <div class="chart-frame medium">
+          <canvas id="transferBarChart"></canvas>
+        </div>
+      </section>
+
+      <section class="section card">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Pattern view</p>
+            <h2>Transfer matrix</h2>
+          </div>
+          <p class="section-note">
+            This cross-tab highlights which party formations were the main source and destination of flips.
+          </p>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table" id="transferTable">
+            <thead>
+              <tr>
+                <th>From</th>
+                <th>To</th>
+                <th>Constituencies</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+
+    <section class="two-col">
+      <section class="section card">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Stable blocs</p>
+            <h2>Parties with the most unchanged seats</h2>
+          </div>
+          <p class="section-note">
+            These are constituencies where the winning party stayed the same in both elections.
+          </p>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table" id="stableTable">
+            <thead>
+              <tr>
+                <th>Party</th>
+                <th>Stable constituencies</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section card">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Executive summary</p>
+            <h2>Board briefing takeaways</h2>
+          </div>
+        </div>
+        <div class="summary-grid" id="summaryGrid"></div>
+      </section>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tamil Nadu Regional Seat Shift Dashboard — Q1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js" defer></script>
+  <script src="js/q1.js" defer></script>
+</head>
+<body>
+  <div class="backdrop backdrop-one"></div>
+  <div class="backdrop backdrop-two"></div>
+
+  <main class="shell">
+    <section class="hero card">
+      <div class="hero-copy">
+        <p class="eyebrow">Tamil Nadu election analysis</p>
+        <h1>Regional seat shifts across 2021 and 2026</h1>
+        <p class="hero-text">
+          A board-ready dashboard that compares constituency winners, regional seat movement,
+          and dominant-party changes across Tamil Nadu's six regions.
+        </p>
+        <div class="hero-actions">
+          <span class="pill pill-accent">2021 vs 2026</span>
+          <span class="pill">Six-region view</span>
+          <span class="pill">Winner-based seat analysis</span>
+        </div>
+      </div>
+
+      <aside class="hero-side">
+        <div class="status card-soft" id="loadStatus">
+          Loading election data from the CSV files...
+        </div>
+        <div class="insight-strip" id="insightStrip"></div>
+      </aside>
+    </section>
+
+    <section class="metrics-grid" id="metricsGrid"></section>
+
+    <section class="section card">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Regional movement</p>
+          <h2>Where the seat balance moved most</h2>
+        </div>
+        <p class="section-note">
+          Absolute seat change is calculated from party-level winner shifts within each region.
+        </p>
+      </div>
+      <div class="chart-frame large">
+        <canvas id="regionShiftChart"></canvas>
+      </div>
+    </section>
+
+    <section class="two-col">
+      <section class="section card">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Party-level change</p>
+            <h2>Net gain or loss by region and party</h2>
+          </div>
+          <p class="section-note">
+            Major parties are highlighted, with smaller parties grouped as Others for clarity.
+          </p>
+        </div>
+        <div class="chart-frame medium">
+          <canvas id="partyShiftChart"></canvas>
+        </div>
+      </section>
+
+      <section class="section card">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Dominance shift</p>
+            <h2>Which party led each region</h2>
+          </div>
+          <p class="section-note">
+            The dominant party is the one with the largest regional seat share in a given year.
+          </p>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table" id="dominanceTable">
+            <thead>
+              <tr>
+                <th>Region</th>
+                <th>2021 leader</th>
+                <th>2021 share</th>
+                <th>2026 leader</th>
+                <th>2026 share</th>
+                <th>Shift</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+
+    <section class="section card">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Heatmap</p>
+          <h2>Regional gain/loss by major parties and Others</h2>
+        </div>
+        <p class="section-note">
+          Blue indicates gains, red indicates losses, and the intensity reflects the size of change.
+        </p>
+      </div>
+      <div id="heatmapContainer" class="heatmap-container"></div>
+    </section>
+
+    <section class="section card footer-card">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Executive summary</p>
+          <h2>Board briefing takeaways</h2>
+        </div>
+      </div>
+      <div class="summary-grid" id="summaryGrid"></div>
+    </section>
+  </main>
+</body>
+</html>
